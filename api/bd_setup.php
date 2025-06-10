@@ -7,14 +7,14 @@ try {
 	$db -> exec("CREATE TABLE IF NOT EXISTS carrito (id_usuario INTEGER, id_producto INTEGER, cantidad INTEGER);");
 
 	if ($_SERVER['REQUEST_METHOD'] == "POST"){
-		$_POST = json_decode(file_get_contents('php://input'),true);
+		//$_POST = json_decode(file_get_contents('php://input'),true);
 
 		$nombre = $_POST['nombre'];
 		$imagen = $_POST['imagen'];
 		$precio = $_POST['precio'];
 
-		$db -> prepare("INSERT INTO productos(nombre,imagen,precio) VALUES(:nombre,:imagen,:precio);");
-		$db -> execute([':nombre' : $nombre, ':imagen' : $imagen, ':precio' : $precio]);
+		$stm = $db -> prepare("INSERT INTO productos(nombre,imagen,precio) VALUES(:nombre,:imagen,:precio);");
+		$stm -> execute([':nombre' => $nombre, ':imagen' => $imagen, ':precio' => $precio]);
 	}
 
 } catch (\PDOException $e){
