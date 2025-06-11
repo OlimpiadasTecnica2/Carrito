@@ -1,9 +1,9 @@
 <?php 
 
 try {
-	$db = new \PDO("sqlite:base.db");
-	$db -> exec("CREATE TABLE IF NOT EXISTS usuarios (id INTEGER PRIMARY KEY, titular TEXT, email TEXT, contrasena TEXT, numero_tarjeta INTEGER, fecha_vencimiento INTEGER, cvv INTEGER, direccion TEXT);");
-	$db -> exec("CREATE TABLE IF NOT EXISTS productos (id INTEGER PRIMARY KEY, nombre TEXT, imagen TEXT, precio NUMBER);");
+	include 'conexion.php';
+	$db -> exec("CREATE TABLE IF NOT EXISTS usuarios (id INTEGER PRIMARY KEY, titular TEXT, email TEXT, contraseña TEXT, numero_tarjeta INTEGER, fecha_vencimiento INTEGER, cvv INTEGER, direccion TEXT);");
+	$db -> exec("CREATE TABLE IF NOT EXISTS productos (id INTEGER PRIMARY KEY, nombre TEXT, descripcion TEXT, imagen TEXT, precio NUMBER);");
 	$db -> exec("CREATE TABLE IF NOT EXISTS carrito (id_usuario INTEGER, id_producto INTEGER, cantidad INTEGER);");
 
 	if ($_SERVER['REQUEST_METHOD'] == "POST"){
@@ -18,8 +18,7 @@ try {
 	}
 
 } catch (\PDOException $e){
-	echo e-> getMessage();
-
+	echo $e-> getMessage();
 }
 
 ?>
