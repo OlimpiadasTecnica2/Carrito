@@ -1,0 +1,240 @@
+body {
+	background-color: #f7f7f7;
+	font-size: 20px;
+	margin: 0;
+	padding: 0;
+	padding-top: 80px;
+}
+.titulo{
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.containertexto{
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
+
+/******************************************** SECCIÓN botones *********************************************/
+
+.barra-superior {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  background-color: #a1bcff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  z-index: 1000;
+  box-sizing: border-box;
+}
+
+/* Grupos de botones */
+.login-bar,
+.carrito-bar {
+  display: flex;
+  gap: 10px;
+}
+
+/* Botones */
+.boton-barra {
+  background-color: #3067ff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  height: 60px;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;  
+  text-decoration: none;
+}
+
+/******************************************** SECCIÓN MENU *********************************************/
+.menu {
+  	list-style-type: none;
+  	background-color: #2f4274;
+  	display: flex;
+  	margin-top: 60px;
+}
+
+.item {
+	float: left;
+	width: 100%;
+}
+
+.item-link {
+	color: white;
+	display: block;
+	text-align: center;
+	padding: 18px 20px; 
+	text-decoration: none;
+	font-family: sans-serif;
+  	font-optical-sizing: auto;
+  	font-variation-settings:
+    "wdth" 100;;
+}
+
+/* FORMULARIO*/ 
+
+form {
+	max-width: 500px;
+	margin: 50px auto;
+	padding: 40px;
+	background-color: #a1e4ff;
+	border-radius: 10px;
+	box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+	align-items: center;
+  }
+  
+  label {
+	display: block;
+	margin-bottom: 10px;
+	font-weight: bold;
+	color: #333;
+  }
+  
+  input {
+	width: 100%;
+	padding: 10px;
+	margin-bottom: 20px;
+	border: 1px solid #cccccc;
+	border-radius: 5px;
+	font-size: 14px;
+  }
+  
+  button {
+	width: 100%;
+	padding: 12px;
+	background-color: #79d5ff;
+	color: white;
+	font-size: 16px;
+	border: none;
+	border-radius: 6px;
+	cursor: pointer;
+  }
+  
+  button:hover {
+	background-color: #03abee;
+  }
+
+  /******************************************** PRODUCTOS: SECCION TARJETAS; *********************************************/
+/* Contenedor de tarjetas */
+.cont-card {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-row-gap: 20px;
+	column-gap: 20px;
+	margin-right: 45px;
+	margin-left: 45px;
+}
+
+/* Tarjetas de productos */
+.tarjeta {
+	background-color: #E4F8F4;
+	display: inline-block;
+	border-radius: 10px;
+}
+
+/* Imagen de tarjeta */
+.card-img-top {
+	height: 500px;
+	width: 100%;
+	object-fit: cover;
+	margin: 15px;
+}
+
+
+.info, h5 {
+	margin: 15px;
+}
+
+/*info de cada paquete*/
+.info-text {
+	margin:50px;
+	font-family: "Urbanist", sans-serif;
+	color: #5D6D7E;
+	font-size: 20px;
+}
+/*boton de compra*/
+.compra{
+	text-decoration:none;
+	font-weight: 80;
+	font-size: 16px;
+	font-family: 'Poppins';
+	color:#333333;
+	padding-top:15px;
+	padding-bottom:15px;
+	padding-left:40px;
+	padding-right:40px;
+	background-color:#47b5ff;
+	border-color: white;
+	border-width: 2px;
+	border-style: solid;
+	border-radius:35px;
+}
+/*boton "covertura"*/
+.compra:hover {
+background-color:rgb(185, 239, 255);
+}
+
+/********************************************  SECCION CARRITO; *********************************************/
+
+.carrito {
+  max-width: 400px;
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+
+.itemCARRITO {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+.info {
+  flex: 1;
+  margin-left: 10px;
+}
+
+.contador {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.contador button {
+  width: 25px;
+  height: 25px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.resumen {
+  border-top: 1px solid #ccc;
+  padding-top: 10px;
+  margin-top: 10px;
+}
+
+.comprar {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  background: #a8e6cf;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/*footer*/
+.piedepagina{
+	text-align: center;
+}
