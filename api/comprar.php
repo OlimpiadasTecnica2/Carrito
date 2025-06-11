@@ -2,7 +2,6 @@
 header('Content-Type: application/json');
 try {
     include 'conexion.php';
-    $data = json_decode(file_get_contents("php://input"), true);
     $usuario_id = $_COOKIE['id'];
     if (!isset($usuario_id)) {
         http_response_code(400);

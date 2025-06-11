@@ -13,6 +13,24 @@ document.getElementById("loginForm").addEventListener("submit", function(event){
 	return;
 }
 
-window.location.href= "carrito.html"
+
+	fetch('api/login.php',{
+		method: "POST",
+		headers: {"content-type": "application/json"},
+		body: JSON.stringify({
+			'email': email,
+			'contraseña': password,
+		})
+	}).then((res) => 
+	{	
+		if (res.ok){
+			window.location.href = "index.php";
+		}
+		else{
+			res.json().then((json) => console.log(json))
+		}
+
+	});
+
 
 });

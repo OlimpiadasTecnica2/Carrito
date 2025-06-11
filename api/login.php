@@ -3,6 +3,7 @@ header('Content-Type: application/json');
 try {
 	include 'conexion.php';
 
+		$_POST = json_decode( file_get_contents("php://input"), true);
 
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$email = $_POST['email'];
@@ -16,6 +17,11 @@ try {
 		$stm = $db->prepare("SELECT id,titular FROM usuarios WHERE email = ? AND contraseña = ?;");
 		$stm->execute([$email, $contraseña]);
 		$res = $stm->fetch(\PDO::FETCH_ASSOC);
+		if (!$res){
+			http_response_code(400);
+			echo json_encode(['mensaje' => 'User not registed']);
+			return;
+		}
 		$id = $res['id'];
 		$titular = $res['titular'];
 		setcookie('id', $id, time() + (86400 * 30), "/");

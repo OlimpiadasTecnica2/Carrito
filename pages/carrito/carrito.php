@@ -10,35 +10,41 @@
 <body>
 	<?php include './pages/header.php' ?>
 	<div class="carrito">
-  		<div class="itemCARRITO" data-precio="100">
-    <div class="info">
-      <strong>Paquete Italia</strong><br>
-      $<span class="precio">1.500.000</span>
-    </div>
-    <div class="contador">
-      <button class="menos">-</button>
-      <span class="cantidad">0</span>
-      <button class="mas">+</button>
-    </div>
-  </div>
 
-  <div class="item" data-precio="150">
-    <div class="info">
-      <strong>Paquete Noruega</strong><br>
-      $<span class="precio">2.600.000</span>
+    <?php 
+      $db = new \PDO("sqlite:api/base.db");
+      $usuario_id = $_COOKIE['id'];
+      $stmt = $db->prepare("SELECT productos.id, productos.nombre, productos.imagen, productos.precio, carrito.cantidad FROM carrito INNER JOIN productos ON carrito.id_producto = productos.id WHERE carrito.id_usuario = ?");
+      $stmt->execute([$usuario_id]);
+      $res = $stmt -> fetchAll(\PDO::FETCH_ASSOC);
+      $total = 0;
+      $subtotal = 0;
+      foreach ($res as $item) :
+    ?>
+    <?php $total += $item['precio'] * $item['cantidad'];
+    $subtotal += $item['precio'];
+    ?>
+  		<div class="item">
+        <img src="<?php echo $item['imagen'] ?>" alt="" srcset="">
+        <div class="info">
+        <strong><?php echo $item['nombre'] ?></strong><br>
+        $<span class="precio"><?php echo $item['precio'] ?></span>
     </div>
-    <div class="contador">
-      <button class="menos">-</button>
-      <span class="cantidad">0</span>
-      <button class="mas">+</button>
+    <div class="contador" id="<?php echo $item['id'] ?>">
+      <button class="menos" onclick="mod(this,-1);">-</button>
+      <span id="cant"><?php echo isset($item['cantidad']) ? $item['cantidad'] : 0 ?></span>
+      <button class="mas" onclick="mod(this,-1);">+</button>
     </div>
   </div>
+  <?php endforeach ?>
 
   <div class="resumen">
-    Subtotal: $<span id="subtotal">0</span><br>
-    Total: $<span id="total">0</span>
-    <button class="comprar">Comprar</button>
-  </div>
+    Subtotal: $<span id="subtotal"><?php echo $subtotal ?></span><br>
+    Total: $<span id="total"><?php echo $subtotal ?></span>
+    <form action="api/comprar.php" method="GET">
+      <button class="comprar" type="submit">Comprar</button>
+      </form>
+    </div>
 </div>
 
 <script type="text/javascript" src="pages/carrito/carrito.js"></script>

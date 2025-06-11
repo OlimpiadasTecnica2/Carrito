@@ -1,39 +1,19 @@
-const items = document.querySelectorAll('.item');
-const subtotalEl = document.getElementById('subtotal');
-const totalEl = document.getElementById('total');
-
-items.forEach(item => {
-  const menos = item.querySelector('.menos');
-  const mas = item.querySelector('.mas');
-  const cantidadEl = item.querySelector('.cantidad');
-  const precio = parseFloat(item.dataset.precio);
-
-  menos.addEventListener('click', () => {
-    let cantidad = parseInt(cantidadEl.textContent);
-    if (cantidad > 0) {
-      cantidad--;
-      cantidadEl.textContent = cantidad;
-      actualizarTotales();
+function mod(ref, dif){
+  const cant = ref.parentElement().getElementById('cant');
+  var cantidad = number(cant.innerHTML);
+  cantidad += dif;
+  if (cantidad < 0){
+    return;
+  }
+  fetch ('api/carrito.php',
+    {
+      method: "PUT",
+      headers: {'content-type': 'application/json'},
+      body: JSON.stringify({
+        'cantidad': cantidad,
+        'producto_id': ref.id,
+      })
     }
-  });
-
-  mas.addEventListener('click', () => {
-    let cantidad = parseInt(cantidadEl.textContent);
-    cantidad++;
-    cantidadEl.textContent = cantidad;
-    actualizarTotales();
-  });
-});
-
-function actualizarTotales() {
-  let subtotal = 0;
-
-  items.forEach(item => {
-    const cantidad = parseInt(item.querySelector('.cantidad').textContent);
-    const precio = parseFloat(item.dataset.precio);
-    subtotal += cantidad * precio;
-  });
-
-  subtotalEl.textContent = subtotal;
-  totalEl.textContent = subtotal; // Podés sumar impuestos si querés
+  ).then((res) => res.json()).then((json) => console.log(json)); 
+  cant.innerHTML = cantidad;
 }
