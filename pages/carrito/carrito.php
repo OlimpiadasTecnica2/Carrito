@@ -31,16 +31,16 @@
         $<span class="precio"><?php echo $item['precio']; ?></span>
     </div>
     <div class="contador" id="<?php echo $item['id']; ?>">
-      <button class="menos" onclick="mod(this,-1);">-</button>
-      <span id="cant"><?php echo isset($item['cantidad']) ? $item['cantidad'] : 0; ?></span>
-      <button class="mas" onclick="mod(this,-1);">+</button>
+      <button class="menos" onclick="mod(this,-1,<?php echo $item['id']; ?>);">-</button>
+      <span class="cant"><?php echo isset($item['cantidad']) ? $item['cantidad'] : 0; ?></span>
+      <button class="mas" onclick="mod(this,+1,<?php echo $item['id']; ?>);">+</button>
     </div>
   </div>
   <?php endforeach ?>
 
   <div class="resumen">
     Subtotal: $<span id="subtotal"><?php echo $subtotal; ?></span><br>
-    Total: $<span id="total"><?php echo $subtotal; ?></span>
+    Total: $<span id="total"><?php echo $total; ?></span>
     <form action="api/comprar.php" method="GET">
       <button class="comprar" type="submit">Comprar</button>
       </form>
@@ -52,19 +52,34 @@ var productos = [
   <?php foreach($res as $item) : ?>
     {
     id: <?php echo $item['id']; ?>,
-    nombre: <?php echo $item['nombre']; ?>,
+    nombre: '<?php echo $item['nombre']; ?>',
+    precio: <?php echo $item['precio']; ?>,
     cantidad: <?php echo $item['cantidad']; ?>,
     }
     <?php endforeach; ?>
 ];
 
-function mod(ref, dif){
-  const cant = ref.parentElement().getElementById('cant');
+function update_sum(){
+  var total = document.getElementById("total");
+  var subtotal = document.getElementById("subtotal");
+
+  var t = 0;
+  var st = 0;
+  for(const p of productos){
+    t += p.precio * p.cantidad;
+    st += p.precio;
+  }
+  total.innerHTML = t;
+  subtotal.innerHTML = st;
+}
+
+function mod(ref, dif,id){
+  const cant = ref.parentElement.getElementsByClassName('cant')[0];
   var cantidad = 0;
   var index = 0;
   for (const [i,p] of productos.entries())
 {
-  if (p.id == ref.parentElement().id){
+  if (p.id == id){
     cantidad = p.cantidad;
     index = i;
     break;
@@ -81,11 +96,13 @@ function mod(ref, dif){
       headers: {'content-type': 'application/json'},
       body: JSON.stringify({
         'cantidad': cantidad,
-        'producto_id': ref.id,
+        'producto_id': id,
       })
     }
   ).then((res) => res.json()).then((json) => console.log(json)); 
   cant.innerHTML = cantidad;
+
+  update_sum();
 }
 
 </script>

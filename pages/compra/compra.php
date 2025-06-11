@@ -11,48 +11,29 @@
 <body>
 <?php include './pages/header.php' ?>
 
- 
+	
 	<div class="cont-card">
-	  	<div class="card">
+
+<?php	
+$db = new PDO('sqlite:api/base.db');
+$stmt = $db->query("SELECT id, nombre, descripcion, precio, imagen FROM productos");
+$productos = $stmt -> fetchAll(\PDO::FETCH_ASSOC);
+foreach ($productos as $item) : 
+?>
+	  	
+	<div class="card" id="<?php echo $item['id']; ?>">
 	  		<video class="card-img-top" loop="true" muted autoplay style width="840" height="560">
-				<source src="pages/assets/img/Italy.mp4" type="video/mp4">
+				<source src="<?php echo $item['imagen']; ?>" type="video/mp4">
  			</video>
 			<div class="card-body">
-	        	<h5 class="card-title">ITALIA</h5>
-	        	<h5>$1.500.000</h5>
-				<button class="compra">AGREGAR</button>
-	        	<p class="info">Pasión por el arte, la historia y la buena vida. Recorré Roma, Venecia y Florencia entre ruinas antiguas, callecitas encantadoras y sabores inolvidables.
-				🍝 Incluye: alojamiento céntrico, tours culturales, clases de cocina italiana y traslados.</p>
+	        	<h5 class="card-title"><?php echo $item['nombre']; ?></h5>
+	        	<h5>$<?php echo $item['precio']; ?></h5>
+				<button class="compra" onclick="post_carrito(<?php echo $item['id']; ?>);">AGREGAR</button>
+	        	<p class="info"><?php echo $item['descripcion']; ?></p>
 	     	</div>
 		</div>
+	<?php endforeach; ?>
 
-	   <div class="card">
-	    	<video class="card-img-top" loop="true" muted autoplay style width="840" height="560">
-				<source src="pages/assets/img/noruega.mp4" type="video/mp4">
- 			</video>
-	  		<div class="card-body">
-	    		<h5 class="card-title">NORUEGA</h5>
-	    		<h5>$2.600.000</h5>
-				<button class="compra">AGREGAR</button>
-	    		<p class="info">Noruega: Naturaleza mágica y paisajes que te dejan sin aliento
-				Desde los imponentes fiordos hasta la aurora boreal, Noruega es un destino de cuento.
-				❄️ Incluye: navegación por fiordos, excursiones nórdicas, alojamiento con vistas panorámicas y experiencias únicas.</p>
-	  		</div>
-	 	</div>
-
-	 	<div class="card">
-	 		<video class="card-img-top" loop="true" muted autoplay style width="840" height="560">
-				<source src="pages/assets/img/inglaterra.mp4" type="video/mp4">
- 			</video>
-	  		<div class="card-body">
-	    		<h5 class="card-title">INGLATERRA</h5>
-	    		<h5>$2.900.000</h5>
-				<button class="compra">AGREGAR</button>
-	    		<p class="info">Inglaterra: Historia real, ciudades vibrantes y encanto británico
-				Descubrí Londres, Oxford y más entre castillos, museos, pubs y jardines victorianos.
-				🎡 Incluye: entradas a atracciones, city tours, alojamiento céntrico y experiencias culturales.</p>
-	  		</div>
-		</div>
 	</div>		
 	<div class="containercompra">
 		<h2></h2>
