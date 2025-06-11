@@ -50,8 +50,6 @@ try {
         setcookie('id', $id, time() + (86400 * 30), "/");
         http_response_code(200);
         echo json_encode(["id" => $id]);
-
-
     }
 
 } catch (\PDOException $e) {

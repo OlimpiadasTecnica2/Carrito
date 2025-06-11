@@ -34,11 +34,10 @@ document.getElementById("formulario").onsubmit = function(event) {
 			window.location.href = "index.php";
 		}
 		else{
-			res.json().then((json) => console.log(json))
+			res.json().then((json) => alert(json.mensaje));
 		}
 
 	});
   
-	// Acá llamamos a la API (simulado con alert)
-	// Redirigir al login después del registro
+	return false;
 }

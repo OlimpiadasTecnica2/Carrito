@@ -1,4 +1,4 @@
-document.getElementById("loginForm").addEventListener("submit", function(event){
+document.getElementById("loginForm").onsubmit = function(){
 	event.preventDefault();
 	let email=
 	document.getElementById("email").value;
@@ -27,10 +27,10 @@ document.getElementById("loginForm").addEventListener("submit", function(event){
 			window.location.href = "index.php";
 		}
 		else{
-			res.json().then((json) => console.log(json))
+			res.json().then((json) => alert(json.mensaje));
 		}
 
 	});
+	return false;
 
-
-});
+};

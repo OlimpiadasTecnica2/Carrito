@@ -8,9 +8,9 @@ function post_carrito(id){
         })
     }).then((res) => {
         if (res.ok){
-            window.location.href = "carrito.php";
+            alert("Producto agregado al carrito");
         }else{
-            res.json().then((json) => console.log(json));
+            res.json().then((json) => alert(json.mensaje));
         }
     });
 }
