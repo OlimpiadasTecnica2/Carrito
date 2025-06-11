@@ -41,7 +41,7 @@
   </div>
 </div>
 
-<script type="text/javascript" src="carrito.js"></script>
+<script type="text/javascript" src="pages/carrito/carrito.js"></script>
 
 <?php include './pages/footer.php' ?> 
 

@@ -60,7 +60,7 @@
 			<!--El resumen de compra se cargara aqui-->
 		</div>
 	</div>
-	<script type="text/javascript" src="compra.js"></script><?php include '../footer.php' ?>
+	<script type="text/javascript" src="pages/compra/compra.js"></script><?php include '../footer.php' ?>
 <?php include './pages/footer.php' ?> 
 
 	</body>

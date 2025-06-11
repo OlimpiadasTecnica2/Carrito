@@ -12,9 +12,6 @@
 <?php include './pages/header.php' ?> 
 
 
-
-
-
 <form id="loginForm" action='api/login.php' method='POST'>
 	<label for="email">Correo Electrónico:</label>
 	<input type="email" id="email" name="email" required>
@@ -24,7 +21,7 @@
   
 	<button type="submit">Iniciar Sesión</button>
   </form>
-  <script type="text/javascript" src="login.js"></script>
+  <script type="text/javascript" src="pages/login/login.js"></script>
 <?php include './pages/footer.php' ?> 
 
 </body>

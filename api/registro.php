@@ -14,6 +14,7 @@
 try {
     include 'conexion.php';
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
+        $_POST = json_decode( file_get_contents("php://input"), true);
         $titular = $_POST['titular'];
         $email = $_POST['email'];//este
         $contraseña = $_POST['contraseña'];

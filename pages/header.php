@@ -1,10 +1,24 @@
 <div>
 <h1 class="titulo">Paquetes Turísticos</h1>
 <div class="barra-superior">
-	<div class="login-bar">
+<?php if(!isset($_COOKIE['id'])) : ?>	
+<div class="login-bar">
 		<a class="boton-barra" href="login.php">Login</a>
 		<a class="boton-barra" href="registro.php">Registrarse</a>
+</div>
+		<?php else : ?>
+<div class="login-bar">
+		<button class="boton-barra"  id="logout">Logout</button>
 	</div>
+<script>
+	document.getElementById("logout").onclick = function(){
+		console.log("logout");
+		fetch('api/login.php', {method: "DELETE"}).finally(() => {
+			window.location.reload();
+		})
+	}
+</script>
+<?php endif; ?>
 	<div class="carrito-bar">
 		<a class="boton-barra" href="carrito.php">🛒 Carrito</a>
 	</div>
