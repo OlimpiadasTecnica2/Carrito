@@ -14,7 +14,7 @@ try {
 
     $stmt = $db->prepare("SELECT productos.nombre, productos.precio, carrito.cantidad FROM carrito INNER JOIN productos on carrito.id_producto=productos.id WHERE carrito.id_usuario = ?");
     $stmt->execute([$usuario_id]);
-    $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $productos = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
     /*foreach ($carrito as $item) {
         $stmt = $db->prepare("INSERT INTO compras (usuario_id, producto_id, cantidad) VALUES (?, ?, ?)");
@@ -48,7 +48,7 @@ Gracias por su compra!
     $stmt->execute([$usuario_id]);
 
     echo json_encode(['mensaje' => $factura]);
-} catch (PDOException $e) {
+} catch (\PDOException $e) {
     http_response_code(400);
     echo json_encode(['mensaje' => $e->getMessage()]);
 }

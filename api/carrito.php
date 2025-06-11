@@ -26,7 +26,7 @@ try {
         $stmt = $db->prepare("SELECT productos.nombre, productos.imagen, productos.precio, carrito.cantidad FROM carrito INNER JOIN productos ON carrito.id_producto = productos.id WHERE carrito.id_usuario = ?");
         $stmt->execute([$usuario_id]);
         http_response_code(200);
-        echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
+        echo json_encode($stmt->fetchAll(\PDO::FETCH_ASSOC));
     } elseif ($method === 'POST') {
         //Verificar si ya existe
         $data = json_decode(file_get_contents("php://input"), true);
@@ -47,7 +47,7 @@ try {
     } elseif ($method === 'PUT') {
         carrito_PUT($db);
     }
-} catch (PDOException $e) {
+} catch (\PDOException $e) {
     http_response_code(400);
     echo json_encode(['mensaje' => $e->getMessage()]);
 }

@@ -15,7 +15,7 @@
 	<div class="cont-card">
 
 <?php	
-$db = new PDO('sqlite:api/base.db');
+$db = new \PDO('sqlite:api/base.db');
 $stmt = $db->query("SELECT id, nombre, descripcion, precio, imagen FROM productos");
 $productos = $stmt -> fetchAll(\PDO::FETCH_ASSOC);
 foreach ($productos as $item) : 
@@ -41,8 +41,8 @@ foreach ($productos as $item) :
 			<!--El resumen de compra se cargara aqui-->
 		</div>
 	</div>
-	<script type="text/javascript" src="pages/compra/compra.js"></script><?php include '../footer.php' ?>
-<?php include './pages/footer.php' ?> 
+	<script type="text/javascript" src="pages/compra/compra.js"></script>
+<?php include 'pages/footer.php' ?> 
 
 	</body>
 	</html>
