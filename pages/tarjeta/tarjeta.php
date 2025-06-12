@@ -14,8 +14,9 @@
 
 <form id="comprarForm" action="carrito.php" method="POST">
 	<label for="metodo">Metodo de pago</label>
-    <select name="metodo" id="metodo" onfocus = "this.selectedIndex = -1;" selectedIndex="-1" onchange="change_metodo();">
-        <option value="debito">Tarjeta de debito</option>
+    <select name="metodo" id="metodo" onchange="change_metodo();">
+    <option value="" disabled>Seleccione un método</option>
+        <option value="debito" selected>Tarjeta de debito</option>
         <option value="credito">Tarjeta de credito</option>
         <option value="transferencia">Transferencia</option>
     </select>

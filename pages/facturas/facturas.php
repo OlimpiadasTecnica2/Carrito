@@ -10,10 +10,14 @@
 <body>
 
 <?php include './pages/header.php' ?> 
+
+<header class="submenu">
+<a href="facturas.php?orden=fecha<?php if(isset($_GET['historico'])) { echo '&historico=true'; }?>">Ordenar por Fecha</a>	
+	<a href="facturas.php?orden=estado<?php if(isset($_GET['historico'])) { echo '&historico=true'; }?>">Ordenar por Estado</a>
 <?php include 'admin/admin_user.php';
 	 $db = new \PDO("sqlite:api/base.db");
 	 $usuario_id = $_COOKIE['id'];
-	 $stmt = $db->prepare("SELECT titular, email, contraseña FROM usuarios WHERE id = ?;");
+	 $stmt = $db->prepare("SELECT nombre_usuario, email, contraseña FROM usuarios WHERE id = ?;");
 	 $stmt->execute([$usuario_id]);
 	 $res = $stmt -> fetch(\PDO::FETCH_ASSOC);
 	 if (!$res){
@@ -30,22 +34,15 @@
 
 	 if ($res['email'] == $admin_email && $res['contraseña'] == $admin_password) :		
 ?>
-	<header>
-		<h2>Administrador</h2>
-	<a href="facturas.php?orden=fecha">Ordenar por Fecha</a>	
-	<a href="facturas.php?orden=id_usuario">Ordenar por Cuentas</a>
-	<a href="facturas.php?orden=estado">Ordenar por Estado</a>
-	<a href="facturas.php?historico=true">-> Historico</a>
-	</header>
+	<h2>Administrador</h2>
+	<a href="facturas.php?orden=id_usuario<?php if(isset($_GET['historico'])) { echo '&historico=true'; }?>">Ordenar por Cuentas</a>
 	<?php else : ?>  
-	<header>
-		<h2><?php echo $res['titular']; ?></h2>
-		<a href="facturas.php?orden=fecha">Ordenar por Fecha</a>	
-	<a href="facturas.php?orden=estado">Ordenar por Estado</a>
-	<a href="facturas.php?<?php if(!isset($_GET['historico'])) { echo 'historico=true'; }?>">-> Historico</a>
+	<h2><?php echo $res['nombre_usuario']; ?></h2>
+	<?php endif; ?>
+	<a href="facturas.php?<?php if(!isset($_GET['historico'])) { echo 'historico=true'; }?>">
+	<?php if(!isset($_GET['historico'])) { echo '-> Historico'; } else { echo '-> Pendientes'; }?>	</a>
 
 </header>
-	<?php endif; ?>
 	
 	<div class="facturas_seleccion">
 		<?php
@@ -75,11 +72,11 @@
 				<br>
 				<h4>FECHA: <?php echo $fac['fecha']; ?></h4>
 				<br>
-				<h4>TITULAR: <?php 
-				$stmt = $db->prepare("SELECT titular FROM usuarios WHERE id = ?;");
+				<h4>nombre: <?php 
+				$stmt = $db->prepare("SELECT nombre_usuario FROM usuarios WHERE id = ?;");
         		$stmt->execute([$fac['id_usuario']]);
 				$res = $stmt -> fetch(\PDO::FETCH_ASSOC);
-				echo $res['titular'];
+				echo $res['nombre_usuario'];
 				?></h4>
 				<br>
 				<h4>ESTADO: <?php echo $fac['estado']; ?></h4>

@@ -14,22 +14,14 @@
 	<div class="containerregistro">
 	<h2>Registro de Nuevo Cliente</h2>
 	<form id="formulario">
+		<label for="nombre_usuario">Nombre:</label>
+		<input type="text" id="nombre_usuario" name="nombre_usuario" required>
 		<label for="email">Correo Electronico:</label>
 		<input type="email" id="email" name="email" required>
 		<label for="password">Contraseña</label>
 		<input type="password" id="password" name="contraseña" required>
 		<label for="confirmPassword">Confirmar contraseña</label>
 		<input type="password" id="confirmPassword" name="confirmPassword" required>	
-		<label for="titular">Titular de tarjeta</label>
-		<input type="text" id="titular" name="titular" required>
-		<label for="numero_tarjeta">Numero de tarjeta</label>
-		<input type="number" id="tarjeta" name="numero_tarjeta" required>
-		<label for="fecha_vencimiento">Fecha de vencimiento</label>
-		<input type="number" id="vencimiento" name="fecha_vencimiento" required>
-		<label for="cvv">CVV</label>
-		<input type="number" id="cvv" name="cvv" required>
-		<label for="direccion">Direccion</label>
-		<input type="text" id="direccion" name="direccion" required>
 		<button type="submit">Registrar</button>
 </form>
 

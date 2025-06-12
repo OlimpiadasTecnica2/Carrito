@@ -1,6 +1,20 @@
 <div>
 <h1 class="titulo">Paquetes Turísticos</h1>
 <div class="barra-superior">
+<?php 
+try{
+	$db = new \PDO('sqlite:api/base.db');
+	$db -> query('SELECT id FROM usuarios;');
+}catch(\PDOException $e){
+	$db = new \PDO('sqlite:api/base.db');
+	$sql = file_get_contents("api/productos.sql");
+	if ($sql){$db -> exec($sql);}
+	header("Location: /");
+	die();
+}
+
+?>
+
 <?php if(!isset($_COOKIE['id'])) : ?>
 <div class="login-bar">
 		<a class="boton-barra" href="login.php">Login</a>

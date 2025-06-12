@@ -15,16 +15,13 @@ try {
     include 'conexion.php';
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $_POST = json_decode( file_get_contents("php://input"), true);
-        $titular = $_POST['titular'];
-        $email = $_POST['email'];//este
+        $nombre_usuario = $_POST['nombre_usuario'];
+        $email = $_POST['email'];
         $contraseña = $_POST['contraseña'];
-        $numero_tarjeta = $_POST['numero_tarjeta'];
-        $fecha_vencimiento = $_POST['fecha_vencimiento'];
-        $cvv = $_POST['cvv'];
-        $direccion = $_POST['direccion'];
+        //este
         //verificar si los datos estan bien
         //si el usuario existe: cancelar
-        if (!isset($email, $titular, $contraseña, $numero_tarjeta, $cvv, $direccion, $fecha_vencimiento)) {
+        if (!isset($email, $contraseña)) {
             http_response_code(400);
     echo json_encode(["mensaje" => "Empty values"]);
             return;
@@ -39,13 +36,9 @@ try {
             return;
         }
 
-        $testo = $db->prepare("INSERT INTO usuarios(email,contraseña,titular,numero_tarjeta,fecha_vencimiento,cvv,direccion) VALUES(?,?,?,?,?,?,?);");
-        $testo->execute([$email, $contraseña, $titular, $numero_tarjeta, $fecha_vencimiento, $cvv, $direccion]);
-
-
-        $testo = $db->prepare("SELECT (id) FROM usuarios WHERE email = ? AND contraseña = ?;");
-        $testo->execute([$email, $contraseña]);
-        $id = $testo->fetch(\PDO::FETCH_ASSOC)['id'];
+        $testo = $db->prepare("INSERT INTO usuarios(email,contraseña,nombre_usuario) VALUES(?,?,?);");
+        $testo->execute([$email, $contraseña,$nombre_usuario]);
+        $id = $db -> lastInsertId();
 
         setcookie('id', $id, time() + (86400 * 30), "/");
         http_response_code(200);

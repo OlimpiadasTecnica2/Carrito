@@ -74,6 +74,8 @@ function change_metodo(){
     }
 }
 
+change_metodo();
+
     var checked = false;
     document.getElementById('consumidor_final').onchange = function(){
     const consumidor_cont = document.getElementById('consumidor_cont');

@@ -9,24 +9,15 @@ document.getElementById("formulario").onsubmit = function(event) {
 	  return;
 	}
 
-	const titular = document.getElementById("titular");
 	const email = document.getElementById("email");
-	const tarjeta = document.getElementById("tarjeta");
-	const vencimiento = document.getElementById("vencimiento");
-	const cvv = document.getElementById("cvv");
-	const direccion = document.getElementById("direccion");
 
 	fetch('api/registro.php',{
 		method: "POST",
 		headers: {"content-type": "application/json"},
 		body: JSON.stringify({
-			'titular': titular.value,
+			'nombre_usuario': document.getElementById("nombre_usuario").value,
 			'email': email.value,
 			'contraseña': password.value,
-			'numero_tarjeta': tarjeta.value,
-			'fecha_vencimiento': vencimiento.value,
-			'cvv': cvv.value,
-			'direccion': direccion.value,
 		})
 	}).then((res) => 
 	{	

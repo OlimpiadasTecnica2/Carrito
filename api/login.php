@@ -14,7 +14,7 @@ try {
 			echo json_encode(['mensaje' => 'Empty values']);
 			return;
 		}
-		$stm = $db->prepare("SELECT id,titular FROM usuarios WHERE email = ? AND contraseña = ?;");
+		$stm = $db->prepare("SELECT id,nombre_usuario FROM usuarios WHERE email = ? AND contraseña = ?;");
 		$stm->execute([$email, $contraseña]);
 		$res = $stm->fetch(\PDO::FETCH_ASSOC);
 		if (!$res){
@@ -36,10 +36,10 @@ try {
 			return;
 		}
 
-		$stm = $db->prepare("SELECT titular, email FROM usuarios WHERE id = :id;");
+		$stm = $db->prepare("SELECT nombre_usuario, email FROM usuarios WHERE id = :id;");
 		$stm->execute([':id' => $_COOKIE['id']]);
 		$res = $stm->fetch(\PDO::FETCH_ASSOC);
-		echo json_encode(['titular' => $res['titular'], 'email'=> $res['email']]);
+		echo json_encode(['titular' => $res['nombre_usuario'], 'email'=> $res['email']]);
 		return;
 	}
 	if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {

@@ -10,7 +10,7 @@ try {
         echo json_encode(['mensaje' => "Not logged in"]);
     }
 
-    $stmt = $db->prepare("SELECT titular, email FROM usuarios WHERE id = ?");
+    $stmt = $db->prepare("SELECT nombre_usuario, email FROM usuarios WHERE id = ?");
     $stmt->execute([$usuario_id]);
     $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -31,7 +31,7 @@ try {
         "FACTURA NUMERO: $factura_id
         Fecha: $fecha
 Remitente: sectorprofesional@gmail.com
-Destinatario: {$usuario['email']} ({$usuario['titular']})
+Destinatario: {$usuario['email']} ({$usuario['nombre_usuario']})
 
 PRODUCTOS\n-------------------------\n";
     $subtotal = 0;
@@ -44,9 +44,9 @@ PRODUCTOS\n-------------------------\n";
     }
     $data = json_decode(file_get_contents("php://input"), true);
 
-    if (isset($data['metodo'],$data['direccion'],$data['titular'])){
+    if (isset($data['metodo'],$data['direccion'],$data['nombre_usuario'])){
         $factura .= "\n METODO: {$data['metodo']}
-        TITULAR: {$data['titular']}
+        nombre_usuario: {$data['nombre_usuario']}
         DIRECCION: {$data['direccion']}";    
     }
     if (isset($data['nombre'],$data['apellido'],$data['dni'])){

@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS usuarios (id INTEGER PRIMARY KEY, titular TEXT, email TEXT, contraseña TEXT, numero_tarjeta INTEGER, fecha_vencimiento INTEGER, cvv INTEGER, direccion TEXT);
+CREATE TABLE IF NOT EXISTS usuarios (id INTEGER PRIMARY KEY,nombre_usuario TEXT, email TEXT, contraseña TEXT);
 CREATE TABLE IF NOT EXISTS facturas (id INTEGER PRIMARY KEY, id_usuario INTEGER, fecha DATETIME DEFAULT CURRENT_TIMESTAMP, estado TEXT);
 CREATE TABLE IF NOT EXISTS ventas (id_factura INTEGER, id_producto INTEGER, cantidad INTEGER);
 CREATE TABLE IF NOT EXISTS productos (id INTEGER PRIMARY KEY, nombre TEXT, descripcion TEXT, imagen TEXT, precio NUMBER);
