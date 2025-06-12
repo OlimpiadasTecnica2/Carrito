@@ -1,7 +1,7 @@
 <div>
 <h1 class="titulo">Paquetes Turísticos</h1>
 <div class="barra-superior">
-<?php if(!isset($_COOKIE['id'])) : ?>	
+<?php if(!isset($_COOKIE['id'])) : ?>
 <div class="login-bar">
 		<a class="boton-barra" href="login.php">Login</a>
 		<a class="boton-barra" href="registro.php">Registrarse</a>

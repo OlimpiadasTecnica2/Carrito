@@ -14,13 +14,17 @@
 
 <form id="loginForm" >
 	<label for="email">Correo Electrónico:</label>
-	<input type="email" id="email" name="email" required>
+	<input type="email" id="email" name="email" placeholder="Ingresar email" required>
   
 	<label for="password">Contraseña:</label>
-	<input type="password" id="password" name="contraseña" required>
+	<input type="password" placeholder="Ingresar su contraseña" id="password" name="contraseña" required>
   
 	<button type="submit">Iniciar Sesión</button>
-  </form>
+	<button type="cancel">Cancelar</button>
+	<p>¿No tienes una cuenta?<a href="registro.php">Registrese</a></p>
+
+</form>
+ 
   <script type="text/javascript" src="pages/login/login.js"></script>
 <?php include './pages/footer.php' ?> 
 
