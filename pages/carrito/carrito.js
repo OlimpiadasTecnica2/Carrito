@@ -55,8 +55,9 @@ function generar_factura(){
   fc.appendChild(text);
   fc.classList = ["factura_st"];
   fetch('api/comprar.php',{
-    method: "GET",
+    method: "POST",
     headers: {"content-type": "application/json"},
+    body: JSON.stringify(datos),
   }).then((res) => {
     if (res.ok){
       res.json().then((json) => {
@@ -73,4 +74,8 @@ function generar_factura(){
       res.json().then((json) => alert(json.mensaje));
     }
   });
+}
+
+function pagar(){
+  window.location.href = "tarjeta.php";
 }

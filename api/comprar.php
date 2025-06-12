@@ -42,6 +42,21 @@ PRODUCTOS\n-------------------------\n";
         $total += $p['precio'] * $p['cantidad'];
         $factura .="\n-------------------------\n";
     }
+    $data = json_decode(file_get_contents("php://input"), true);
+
+    if (isset($data['metodo'],$data['direccion'],$data['titular'])){
+        $factura .= "\n METODO: {$data['metodo']}
+        TITULAR: {$data['titular']}
+        DIRECCION: {$data['direccion']}";    
+    }
+    if (isset($data['nombre'],$data['apellido'],$data['dni'])){
+        $factura .= "
+        CONSUMIDOR FINAL
+        NOMBRE: {$data['nombre']}
+        APELLIDO: {$data['apellido']}
+        DNI: {$data['apellido']}";
+    }
+
     $factura .=
         "\n
 Subtotal = {$subtotal}

@@ -20,7 +20,7 @@
 	<input type="password" placeholder="Ingresar su contraseña" id="password" name="contraseña" required>
   
 	<button type="submit">Iniciar Sesión</button>
-	<button type="cancel">Cancelar</button>
+	<a href="/index.php">Cancelar</a>
 	<p>¿No tienes una cuenta?<a href="registro.php">Registrese</a></p>
 
 </form>

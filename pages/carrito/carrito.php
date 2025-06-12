@@ -47,7 +47,7 @@
   <div class="resumen" id="res">
     Subtotal: $<span id="subtotal"><?php echo $subtotal; ?></span><br>
     Total: $<span id="total"><?php echo $total; ?></span>
-      <button class="comprar" onclick="generar_factura()">Comprar</button>
+      <button class="comprar" onclick="pagar()">Comprar</button>
     </div>
 </div>
 
@@ -65,6 +65,16 @@ var productos = [
     },
     <?php endforeach; ?>
 ];
+
+<?php if($_SERVER['REQUEST_METHOD'] == "POST") : ?>
+var datos = {
+  <?php foreach($_POST as $key => $value) : ?>
+    <?php echo $key ?>: '<?php echo $value ?>',
+  <?php endforeach ?>
+  };
+
+  generar_factura();
+<?php endif; ?>
 <?php include 'pages/carrito/carrito.js'; ?>
 
 </script>
