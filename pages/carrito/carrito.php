@@ -44,7 +44,7 @@
   <?php endforeach ?>
   </div>
 
-  <div class="resumen">
+  <div class="resumen" id="res">
     Subtotal: $<span id="subtotal"><?php echo $subtotal; ?></span><br>
     Total: $<span id="total"><?php echo $total; ?></span>
       <button class="comprar" onclick="generar_factura()">Comprar</button>

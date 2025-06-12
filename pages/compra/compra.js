@@ -1,4 +1,5 @@
 function post_carrito(id){
+    
     fetch('api/carrito.php',{
         method: "POST",
         headers: {"content-type": "application/json"},

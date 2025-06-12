@@ -47,7 +47,7 @@ function mod(ref, dif,id){
 
 function generar_factura(){
   const fc = document.getElementById("factura");
-  if (fc.getElementsByClassName('item').length == 0){
+  if (productos.length == 0){
     alert("No tiene productos");
     return;
   }
@@ -62,9 +62,11 @@ function generar_factura(){
       res.json().then((json) => {
         fc.removeChild(text);
         fc.appendChild(document.createTextNode(json.mensaje));
-        document.getElementById('car').replaceChildren(document.createTextNode("No tiene productos en el carrito"));
-        document.getElementById('total').innerHTML = 0;
-        document.getElementById('subtotal').innerHTML = 0;
+        const botn = document.createElement("a");
+        botn.href = "compra.php";
+        botn.innerHTML = "Productos";
+        document.getElementById('car').replaceChildren(document.createTextNode("Desea ralizar una nueva compra?"),botn);
+        document.getElementById('res').replaceChildren();       
       });
     }
     else{

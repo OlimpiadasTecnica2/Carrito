@@ -279,7 +279,7 @@ background-color:rgb(185, 239, 255);
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	max-width: 400px;
+	flex-grow: 1;
 	background-color: wheat;
 	padding: 15px;
 	border-radius: 10px;
