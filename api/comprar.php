@@ -14,18 +14,22 @@ try {
     $stmt->execute([$usuario_id]);
     $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    $stmt = $db->prepare("SELECT productos.nombre, productos.precio, carrito.cantidad FROM carrito INNER JOIN productos on carrito.id_producto=productos.id WHERE carrito.id_usuario = ?");
+    $stmt = $db->prepare("SELECT productos.id, productos.nombre, productos.precio, carrito.cantidad FROM carrito INNER JOIN productos on carrito.id_producto=productos.id WHERE carrito.id_usuario = ?");
     $stmt->execute([$usuario_id]);
     $productos = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
-    /*foreach ($carrito as $item) {
-        $stmt = $db->prepare("INSERT INTO compras (usuario_id, producto_id, cantidad) VALUES (?, ?, ?)");
-        $stmt->execute([$usuario_id, $item['producto_id'], $item['cantidad']]);
-    }*/
-
+    $stmt = $db->prepare("INSERT INTO facturas(id_usuario, estado) VALUES(?,?);");
+    $stmt->execute([$usuario_id,"PENDIENTE"]);
+    $factura_id = $db->lastInsertId();
+    foreach ($productos as $item) {
+        $stmt = $db->prepare("INSERT INTO ventas VALUES (?, ?, ?)");
+        $stmt->execute([$factura_id, $item['id'], $item['cantidad']]);
+    }
+    $fecha = date('Y-m-d H:i:s');
     //Hacer calculo de precio y crear un mail pre procesado, ej:
     $factura =
-        "FACTURA
+        "FACTURA NUMERO: $factura_id
+        Fecha: $fecha
 Remitente: sectorprofesional@gmail.com
 Destinatario: {$usuario['email']} ({$usuario['titular']})
 

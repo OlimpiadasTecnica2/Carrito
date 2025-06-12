@@ -270,3 +270,35 @@ background-color:rgb(185, 239, 255);
 .piedepagina{
 	text-align: center;
 }
+
+.factura-marco{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	max-width: 400px;
+	background-color: wheat;
+	padding: 15px;
+	border-radius: 10px;
+	box-shadow: 0 0 8px rgba(0,0,0,0.1);
+	text-align: center;
+}
+
+.factura-body > div{
+	display: flex;
+	flex-wrap: wrap;
+	background-color: whitesmoke;
+	margin: 15px;
+	justify-content: space-evenly;
+	align-content: space-evenly;
+	align-items: center;
+}
+
+.factura-body > div > .factura-mod{
+	display: flex;
+	align-items: center;
+}
+
+.factura-body > div > .factura-mod > button{
+	height: 50%;
+}

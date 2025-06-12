@@ -26,6 +26,7 @@
 
 	<ul class="menu">
 		<li class="item"><a class="item-link" href="index.php" >INICIO</a></li>
-	    <li class="item"><a class="item-link" href="compra.php">COMPRA</a></li>
+		<li class="item"><a class="item-link" href="facturas.php" >FACTURAS</a></li>
+	    <li class="item"><a class="item-link" href="compra.php">SERVICIOS</a></li>
 	</ul>
 </div>
