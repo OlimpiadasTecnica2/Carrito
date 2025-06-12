@@ -43,3 +43,24 @@ function mod(ref, dif,id){
 
   update_sum();
 }
+
+function factura(json){
+  const factura = document.getElementById("factura");
+  const text = document.createTextNode(json.mensaje);
+  factura.classList = ["factura_st"];
+  factura.appendChild(text);
+}
+
+function generar_factura(){
+  fetch('api/comprar.php',{
+    method: "GET",
+    headers: {"content-type": "application/json"},
+  }).then((res) => {
+    if (res.ok){
+      res.json().then((json) => factura(json));
+    }
+    else{
+      res.json().then((json) => alert(json.mensaje));
+    }
+  });
+}

@@ -10,6 +10,7 @@
 <body>
 <?php if(isset($_COOKIE['id'])) : ?>
 	<?php include './pages/header.php' ?>
+  <div class="main-cont">
 
 	<div class="carrito">
 
@@ -21,6 +22,7 @@
       $res = $stmt -> fetchAll(\PDO::FETCH_ASSOC);
       $total = 0;
       $subtotal = 0;
+      if (sizeof($res) == 0) { echo "<h1>No tienes productos en el carrito</h1>"; }
       foreach ($res as $item) :
     ?>
     <?php $total += $item['precio'] * $item['cantidad'];
@@ -43,10 +45,11 @@
   <div class="resumen">
     Subtotal: $<span id="subtotal"><?php echo $subtotal; ?></span><br>
     Total: $<span id="total"><?php echo $total; ?></span>
-    <form action="api/comprar.php" method="GET">
-      <button class="comprar" type="submit">Comprar</button>
-      </form>
+      <button class="comprar" onclick="generar_factura()">Comprar</button>
     </div>
+</div>
+
+<div id="factura" class="hidden" ></div>
 </div>
 
 <script type="text/javascript">

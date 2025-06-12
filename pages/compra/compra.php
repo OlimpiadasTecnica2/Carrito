@@ -11,7 +11,6 @@
 <body>
 <?php include './pages/header.php' ?>
 
-	
 	<div class="cont-card">
 
 <?php	

@@ -12,7 +12,7 @@
 <?php include './pages/header.php' ?> 
 
 
-<form id="loginForm">
+<form id="loginForm" >
 	<label for="email">Correo Electrónico:</label>
 	<input type="email" id="email" name="email" required>
   
