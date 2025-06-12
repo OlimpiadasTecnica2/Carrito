@@ -302,3 +302,9 @@ background-color:rgb(185, 239, 255);
 .factura-body > div > .factura-mod > button{
 	height: 50%;
 }
+
+.facturas_seleccion{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}

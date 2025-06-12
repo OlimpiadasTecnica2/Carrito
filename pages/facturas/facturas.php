@@ -35,25 +35,43 @@
 	<a href="facturas.php?orden=fecha">Ordenar por Fecha</a>	
 	<a href="facturas.php?orden=id_usuario">Ordenar por Cuentas</a>
 	<a href="facturas.php?orden=estado">Ordenar por Estado</a>
+	<a href="facturas.php?historico=true">-> Historico</a>
 	</header>
-	<?php else : ?>
+	<?php else : ?>  
 	<header>
 		<h2><?php echo $res['titular']; ?></h2>
 		<a href="facturas.php?orden=fecha">Ordenar por Fecha</a>	
 	<a href="facturas.php?orden=estado">Ordenar por Estado</a>
+	<a href="facturas.php?<?php if(!isset($_GET['historico'])) { echo 'historico=true'; }?>">-> Historico</a>
+
 </header>
 	<?php endif; ?>
 	
 	<div class="facturas_seleccion">
-		<?php 
-		if ($res['email'] == $admin_email && $res['contraseña'] == $admin_password){
-			$stmt = $db->query("SELECT id, fecha , id_usuario, estado FROM facturas ORDER BY facturas.{$_GET['orden']} DESC;");
-			$res = $stmt -> fetchAll(\PDO::FETCH_ASSOC);
-		}else{
-		$stmt = $db->prepare("SELECT id, fecha , id_usuario, estado FROM facturas WHERE id_usuario = ? ORDER BY facturas.{$_GET['orden']} DESC;");
-        $stmt->execute([$usuario_id]);
-		$facturas = $stmt -> fetchAll(\PDO::FETCH_ASSOC);
+		<?php
+		$clause = ""; 
+		$params = [];
+		if(isset($_GET['historico'])){
+		$clause = "WHERE estado <> 'CONFIRMADO'"; 
 		}
+
+		if ($res['email'] == $admin_email && $res['contraseña'] == $admin_password){
+			$query = "SELECT id, fecha , id_usuario, estado FROM facturas ";
+			
+		}else{
+			$query = "SELECT id, fecha , id_usuario, estado FROM facturas ";
+			if (isset($_GET['historico'])){
+			$clause .= " AND id_usuario = ? ";
+				$params = [$usuario_id];
+			}
+			else{
+				$clause = " WHERE id_usuario = ? ";
+				$params = [$usuario_id];
+			}
+		}
+		$stmt = $db->prepare("{$query} {$clause} ORDER BY facturas.{$_GET['orden']} DESC;");
+		$stmt->execute($params);
+		$facturas = $stmt -> fetchAll(\PDO::FETCH_ASSOC);
 		foreach ($facturas as $fac) :
 		?>
 		<div class="factura-marco">
