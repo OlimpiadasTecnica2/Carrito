@@ -6,6 +6,9 @@
 	align-items: center;
 	flex-wrap: wrap;
 }
+.carrito-cont{
+	flex-grow: 1;
+}
 
 body {
 	background-color: #f7f7f7;

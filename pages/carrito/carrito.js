@@ -44,20 +44,28 @@ function mod(ref, dif,id){
   update_sum();
 }
 
-function factura(json){
-  const factura = document.getElementById("factura");
-  const text = document.createTextNode(json.mensaje);
-  factura.classList = ["factura_st"];
-  factura.appendChild(text);
-}
 
 function generar_factura(){
+  const fc = document.getElementById("factura");
+  if (fc.getElementsByClassName('item').length == 0){
+    alert("No tiene productos");
+    return;
+  }
+  const text = document.createTextNode("Cargando...");
+  fc.appendChild(text);
+  fc.classList = ["factura_st"];
   fetch('api/comprar.php',{
     method: "GET",
     headers: {"content-type": "application/json"},
   }).then((res) => {
     if (res.ok){
-      res.json().then((json) => factura(json));
+      res.json().then((json) => {
+        fc.removeChild(text);
+        fc.appendChild(document.createTextNode(json.mensaje));
+        document.getElementById('car').replaceChildren(document.createTextNode("No tiene productos en el carrito"));
+        document.getElementById('total').innerHTML = 0;
+        document.getElementById('subtotal').innerHTML = 0;
+      });
     }
     else{
       res.json().then((json) => alert(json.mensaje));

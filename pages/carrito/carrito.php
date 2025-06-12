@@ -12,8 +12,8 @@
 	<?php include './pages/header.php' ?>
   <div class="main-cont">
 
-	<div class="carrito">
-
+  <div class="carrito-cont">
+	<div class="carrito" id="car">
     <?php 
       $db = new \PDO("sqlite:api/base.db");
       $usuario_id = $_COOKIE['id'];
@@ -40,7 +40,9 @@
       <button class="mas" onclick="mod(this,+1,<?php echo $item['id']; ?>);">+</button>
     </div>
   </div>
+
   <?php endforeach ?>
+  </div>
 
   <div class="resumen">
     Subtotal: $<span id="subtotal"><?php echo $subtotal; ?></span><br>

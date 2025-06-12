@@ -52,22 +52,17 @@
 		$clause = ""; 
 		$params = [];
 		if(isset($_GET['historico'])){
-		$clause = "WHERE estado <> 'CONFIRMADO'"; 
+		$clause = "WHERE estado == 'CONFIRMADO'"; 
+		}else{
+			$clause = "WHERE estado <> 'CONFIRMADO'";
 		}
 
 		if ($res['email'] == $admin_email && $res['contraseña'] == $admin_password){
 			$query = "SELECT id, fecha , id_usuario, estado FROM facturas ";
-			
 		}else{
 			$query = "SELECT id, fecha , id_usuario, estado FROM facturas ";
-			if (isset($_GET['historico'])){
 			$clause .= " AND id_usuario = ? ";
 				$params = [$usuario_id];
-			}
-			else{
-				$clause = " WHERE id_usuario = ? ";
-				$params = [$usuario_id];
-			}
 		}
 		$stmt = $db->prepare("{$query} {$clause} ORDER BY facturas.{$_GET['orden']} DESC;");
 		$stmt->execute($params);
