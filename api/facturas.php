@@ -28,7 +28,7 @@ try {
             $stmt = $db->prepare("SELECT facturas.id, facturas.fecha, facturas.id_usuario, facturas.estado, ventas.id_producto, ventas.cantidad FROM ventas INNER JOIN facturas ON ventas.id_factura = facturas.id WHERE ventas.id_factura = ? ORDER BY ?;");
             $stmt->execute([$_GET["id_factura"],$_GET["orden"]]);
             http_response_code(200);
-        echo json_encode($stmt->fetchAll(\PDO::FETCH_ASSOC));
+        echo json_encode($stmt->fetch(\PDO::FETCH_ASSOC));
         return;
         }
         else{

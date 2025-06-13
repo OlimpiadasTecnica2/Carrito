@@ -1,15 +1,6 @@
 <?php
-header('Content-Type: application/json');
-try {
     include 'conexion.php';
 
-if ($_SERVER['REQUEST_METHOD'] == "GET"){
-    $stmt = $db->query("SELECT id, nombre, descripcion, precio, imagen FROM productos");
-    http_response_code(200);
-    echo json_encode($stmt->fetchAll(\PDO::FETCH_ASSOC));
-    return;
-}
-elseif ($_SERVER['REQUEST_METHOD'] == "POST"){
     include '../admin/admin_user.php';
     if (!isset($_COOKIE['id'])){
         http_response_code(400);
@@ -17,7 +8,7 @@ elseif ($_SERVER['REQUEST_METHOD'] == "POST"){
         return;
     }
 
-    if (!isset($_POST['imagen'],$_POST['nombre'],$_POST['descripcion'],$_POST['precio'])){
+    if (!isset($_POST['id'])){
         http_response_code(400);
         echo json_encode(["mensaje" => "Empty values"]);
         return;
@@ -32,15 +23,10 @@ elseif ($_SERVER['REQUEST_METHOD'] == "POST"){
         echo json_encode(["mensaje" => "Not an admin user"]);
         return;
     }
-    $stmt = $db->prepare("INSERT INTO productos(nombre, descripcion, precio, imagen) VALUES(?,?,?,?)");
-    $stmt -> execute([$_POST['nombre'],$_POST['descripcion'],$_POST['precio'],$_POST['imagen']]);
+    $stmt = $db->prepare("DELETE FROM productos WHERE id = ?");
+    $stmt -> execute([$_POST['id']]);
     http_response_code(200);
     echo json_encode($stmt->fetchAll(\PDO::FETCH_ASSOC));
     header("Location: /compra.php");
     die();
-}
-} catch (\PDOException $e) {
-    http_response_code(400);
-    echo json_encode(["mensaje" => $e->getMessage()]);
-}
 ?>

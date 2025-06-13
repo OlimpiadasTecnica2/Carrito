@@ -23,7 +23,7 @@ try {
 			return;
 		}
 		$id = $res['id'];
-		$titular = $res['titular'];
+		$titular = $res['nombre_usuario'];
 		setcookie('id', $id, time() + (86400 * 30), "/");
 		http_response_code(200);
 		echo json_encode(['titular' => $titular, 'email' => $email]);

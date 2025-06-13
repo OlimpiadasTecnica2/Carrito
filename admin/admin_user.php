@@ -1,1 +1,1 @@
-<?php $admin_email = "sectorprofesional@gmail.com"; $admin_password = "test_password"; ?>
+<?php $admin_email = "sectorprofesional@gmail.com"; $admin_password = "S3CT0RVENTAS"; ?>
