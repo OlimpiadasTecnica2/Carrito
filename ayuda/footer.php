@@ -1,4 +1,3 @@
    	<footer>
 	  	<p class="piedepagina"> Gabriel Solotorevsky - Salvador Avalos - Denise Agüero - Paola Irigoitia - Merlini Nicolas &copy; 2025 | Argentina, Bs As</p>
-		<a href="/ayuda/index.php">Necesitas ayuda?</a>
-	</footer>
+   	</footer>
