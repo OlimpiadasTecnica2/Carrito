@@ -48,6 +48,8 @@
     Subtotal: $<span id="subtotal"><?php echo $subtotal; ?></span> USD<br>
     Total: $<span id="total"><?php echo $total; ?></span> USD
       <button class="comprar" onclick="pagar()">Comprar</button>
+<br>
+<p> + IVA Incluido </p>
     </div>
 </div>
 
