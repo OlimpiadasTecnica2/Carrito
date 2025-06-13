@@ -37,7 +37,7 @@ PRODUCTOS\n-------------------------\n";
     $subtotal = 0;
     $total = 0;
     foreach ($productos as $p) {
-        $factura .= "Nombre: {$p['nombre']} | Precio: {$p['precio']} | Cantidad: {$p['cantidad']}";
+        $factura .= "Nombre: {$p['nombre']} | Precio: $ {$p['precio']} USD | Cantidad: {$p['cantidad']}";
         $subtotal += $p['precio'];
         $total += $p['precio'] * $p['cantidad'];
         $factura .="\n-------------------------\n";
@@ -59,8 +59,8 @@ PRODUCTOS\n-------------------------\n";
 
     $factura .=
         "\n
-Subtotal = {$subtotal}
-Total = {$total}
+Subtotal = $ {$subtotal} USD
+Total = $ {$total} USD
 
 Gracias por su compra!
 ";

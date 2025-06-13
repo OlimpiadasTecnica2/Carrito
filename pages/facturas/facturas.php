@@ -95,7 +95,7 @@
 				?></h5>
 				<h6>$<?php 
 					echo $p['precio'];
-				?></h6>
+				?> USD</h6>
 				<?php
 				if ($fac['estado'] == "PENDIENTE") :
 				?>
