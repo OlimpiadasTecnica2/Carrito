@@ -13,9 +13,10 @@
 
 	<div class="containertexto" align="center"> 
 		<h2> Bienvenidos a tu próxima aventura
-		En nuestra web encontrás paquetes turísticos únicos y cuidadosamente diseñados para que vivas Italia, Noruega e Inglaterra de una forma auténtica y memorable.
+		En nuestra web encontrás paquetes turísticos únicos y cuidadosamente diseñados para que vivas Italia, Noruega e Inglaterra de una forma auténtica y memorable.<br>
 
 		Ya sea que sueñes con caminar por las calles de Roma, ver la aurora boreal en los fiordos noruegos o tomar el té frente al Big Ben, tenemos el viaje perfecto para vos.
+<br>
 
 		 Explorá. Descubrí. Viví. Tu viaje comienza acá.</h2>	
 

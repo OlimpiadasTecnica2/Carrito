@@ -32,7 +32,7 @@
         <img src="<?php echo $item['imagen']; ?>" alt="" srcset="">
         <div class="info">
         <strong><?php echo $item['nombre']; ?></strong><br>
-        $<span class="precio"><?php echo $item['precio']; ?></span>
+        $<span class="precio"><?php echo $item['precio']; ?> USD</span>
     </div>
     <div class="contador" id="<?php echo $item['id']; ?>">
       <button class="menos" onclick="mod(this,-1,<?php echo $item['id']; ?>);">-</button>
@@ -45,8 +45,8 @@
   </div>
 
   <div class="resumen" id="res">
-    Subtotal: $<span id="subtotal"><?php echo $subtotal; ?></span><br>
-    Total: $<span id="total"><?php echo $total; ?></span>
+    Subtotal: $<span id="subtotal"><?php echo $subtotal; ?></span> USD<br>
+    Total: $<span id="total"><?php echo $total; ?></span> USD
       <button class="comprar" onclick="pagar()">Comprar</button>
     </div>
 </div>

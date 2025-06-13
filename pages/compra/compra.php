@@ -33,7 +33,7 @@ foreach ($productos as $item) :
  			</video>
 			<div class="card-body">
 	        	<h5 class="card-title"><?php echo $item['nombre']; ?></h5>
-	        	<h5>$<?php echo $item['precio']; ?></h5>
+	        	<h5>$<?php echo $item['precio']; ?> USD</h5>
 				<button class="compra" onclick="post_carrito(<?php echo $item['id']; ?>);">AGREGAR</button>
 	        	<p class="info"><?php echo $item['descripcion']; ?></p>
 	     	</div>

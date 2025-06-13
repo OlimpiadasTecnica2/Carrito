@@ -54,7 +54,7 @@ PRODUCTOS\n-------------------------\n";
         CONSUMIDOR FINAL
         NOMBRE: {$data['nombre']}
         APELLIDO: {$data['apellido']}
-        DNI: {$data['apellido']}";
+        DNI: {$data['dni']}";
     }
 
     $factura .=
